@@ -12,23 +12,13 @@ tags:
 ---
 \# AWS Step Function
 
-
-
 AWS \[Step Function](https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc) is a serverless orchestration service that lets developers create and manage multi-step application workflows. Use cases for Step Functions vary widely, from orchestrating \[serverless microservices](https://www.datadoghq.com/knowledge-center/serverless-architecture/serverless-microservices/), to building data-processing pipelines.
-
-
 
 In this application we will use Step Function to orchestrate the Lambda functions in our vacation booking application.
 
-
-
 \## Step Functions configuration
 
-
-
 To get started, first install the \`serverless-step-functions\` plugin. Run the following command.
-
-
 
 \`\``bash
 
@@ -36,33 +26,19 @@ $ npm i serverless-step-functions --save
 
 \`\``
 
-
-
 Add, the step function dependency in your \`serverless.yml\` file.
-
-
 
 \`\``bash
 
-
-
 \# partials of serverless.yml
-
-
 
 service: fauna-aws-workshop
 
-
-
 frameworkVersion: '2.72.3'
-
-
 
 \# Specify donenv
 
 useDotenv: true
-
-
 
 \# Add Fauna plugin
 
@@ -74,23 +50,15 @@ plugins:
 
 \- serverless-step-functions
 
-
-
 \#...rest of the file
 
 \`\``
 
-
-
 Next, you will create a state machine to orchestrate the Lambdas. Add the following code snippet to \`serverless.yml\` file.
-
-
 
 \`\``yaml
 
 \# partials of serverless.yml
-
-
 
 stepFunctions:
 
@@ -154,43 +122,23 @@ End: true
 
 \`\``
 
-
-
 \*\*\*View the entire \`serverles.yml\` file here.\*\*\*
-
-
 
 Run \`sls deploy\` command to deploy the latest changes.
 
-
-
 When the deployment is done head back to AWS console. Select \*Step Function > State machines > your-step-function-name > Edit.\*
-
-
 
 !\[Untitled](AWS%20Step%20Function%20f9c5c210196748baaf74e479ebbcda7e/Untitled.png)
 
-
-
 Notice that a Step Function workflow has been generated. Your Step Function workflow should be as follows.
-
-
 
 !\[Untitled](AWS%20Step%20Function%20f9c5c210196748baaf74e479ebbcda7e/Untitled%201.png)
 
-
-
 The deployment also generates an API endpoint. Make a post-call to your generated API endpoint to check everything is working.
-
-
 
 \*\*Successful booking scenario\*\*
 
-
-
 POST \`\[https://pc4jk9bsil.execute-api.us-east-1.amazonaws.com/dev/book-vacation](https://www.notion.so/AWS-Step-Function-d5adcb5d2b23487bbe704f612c31d612)\`
-
-
 
 \`\``json
 
@@ -206,23 +154,13 @@ POST \`\[https://pc4jk9bsil.execute-api.us-east-1.amazonaws.com/dev/book-vacatio
 
 \`\``
 
-
-
 Observe the Step Function execution in your AWS console. You will be able to notice something similar as follows.
-
-
 
 !\[Untitled](AWS%20Step%20Function%20f9c5c210196748baaf74e479ebbcda7e/Untitled%202.png)
 
-
-
 \*\*Failed booking scenario\*\*
 
-
-
 POST \`\[https://pc4jk9bsil.execute-api.us-east-1.amazonaws.com/dev/book-vacation](https://www.notion.so/AWS-Step-Function-d5adcb5d2b23487bbe704f612c31d612)\`
-
-
 
 \`\``json
 
@@ -238,31 +176,17 @@ POST \`\[https://pc4jk9bsil.execute-api.us-east-1.amazonaws.com/dev/book-vacatio
 
 \`\``
 
-
-
 !\[Untitled](AWS%20Step%20Function%20f9c5c210196748baaf74e479ebbcda7e/Untitled%203.png)
-
-
 
 At this point you have your event driven architecture setup.
 
-
-
 \### Listening to DB changes with Fauna Event Streams
-
-
 
 To make this solution work end to end let’s go ahead and create a simple frontend. In the fronted you can also subscribe to any changes that happens in the database. Fauna’s \[Event Stream API](https://docs.fauna.com/fauna/current/learn/understanding/streaming) gives you the ability to subscribe to database events in real time.
 
-
-
 ✍️ Learn more about \[Event Streaming here.](https://docs.fauna.com/fauna/current/learn/understanding/streaming)
 
-
-
 Create a new file called \`index.html\` in the root of your application. Add the following code.
-
-
 
 \`\``jsx
 
@@ -283,8 +207,6 @@ Create a new file called \`index.html\` in the root of your application. Add the
 <button onclick="createNewVacation()">Book Vacation</button>
 
 </body>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb-min.js"></script>
 
@@ -454,16 +376,10 @@ console.log(error);
 
 </script>
 
-
-
 </html>
 
 \`\``
 
-
-
 \*\*⚠️ Caution:\*\* While doing Event Streaming make sure to close the subscription when not in use. If you keep the subscription open (i.e. Open browser tab with subscribed stream) you will be charged for the usage.
-
-
 
 In this next section you learn how to add event sourcing to this architecture.
