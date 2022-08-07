@@ -3,8 +3,8 @@ backend:
   branch: main # Branch to update
   repo: shadid12/horizon-blog-starter # Repo for pushing new commits. Make sure to replace with your repo!
 
-media_folder: static/assets
-public_folder: assets
+media_folder: themes/advanced/content
+public_folder: images
 
 collections:
   - name: blog
