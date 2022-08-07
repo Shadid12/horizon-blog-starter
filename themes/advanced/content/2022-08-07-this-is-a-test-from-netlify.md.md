@@ -3,7 +3,7 @@ title: This is a test from Netlify
 description: Test from Netlify
 datePublished: 2022-08-06T20:51:36.017Z
 dateModified: 2022-08-06T20:51:36.028Z
-cover: https://assets.skiesmag.com/wp-content/uploads/2021/12/air_canada_787_yyz_parked_front_portrait-1.jpg
+cover: images/cover_4.jpeg
 coverAlt: Plane
 slug: test-from-netlify
 category: AeroPlane
